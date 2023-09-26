@@ -28,5 +28,5 @@ for i in range(1, N):
 plt.plot(x, y)
 plt.xlabel('X Position')
 plt.ylabel('Y Position')
-plt.title('Kepler Orbit (RUNGE KUTTA 4 METHOD)')
+plt.title('Kepler Orbit (RUNGE-KUTTA 4 METHOD)')
 plt.show()  

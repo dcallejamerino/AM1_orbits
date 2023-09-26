@@ -36,5 +36,5 @@ for i in range(1,N):
 plt.plot(x,y)
 plt.xlabel('X Position')
 plt.ylabel('Y Position')
-plt.title('Kepler Orbit (EULER-METHOD)')
+plt.title('Kepler Orbit (EULER METHOD)')
 plt.show()
