@@ -11,9 +11,9 @@ from numpy import array,zeros
 import matplotlib.pyplot as plt
 
 # Parameters
-N = 100000
+N = 10000
 U = array( [1,0,0,1] )
-dt = 0.0001
+dt = 0.001
 x = array( zeros(N) )
 y = array( zeros(N) )
 x[0] = U[0] 
