@@ -1,5 +1,5 @@
-# MILESTONE 1 Write a script to integrate Kepler Orbits with Euler, Crank-Nicolson and RK4 Method
-# Crank-Nicolson
+# MILESTONE 2 Write a function called Inverse_Euler to integrate one step
+# Inverse Euler
 
 from numpy import array, zeros
 from scipy.optimize import newton
@@ -25,21 +25,19 @@ def Kepler(U, t):
     return  array( [ dxdt, dydt, -x/d, -y/d ] ) 
 
 
-def CN (U, dt, t, F ): 
+def Inverse_Euler(U, dt, t, F): 
 
-    def Residual_CN(X): 
-         
-         return  X - a - dt/2 *  F(X, t + dt)
+    def Residual(X): 
+          return X - U - dt * F(X, t)
 
-    a = U  +  dt/2 * F(U, t) 
-    
-    return newton( Residual_CN, U )
+    return newton(func = Residual, x0 = U ) 
+
 
 for i in range(1, N): 
 
       dt = 0.1 
       t[i] = dt*i
-      U = CN (U, dt, t, Kepler)
+      U = Inverse_Euler (U, dt, t, Kepler)
       x[i] = U[0] 
       y[i] = U[1]
 
@@ -47,6 +45,5 @@ for i in range(1, N):
 plt.plot(x, y)
 plt.xlabel('X Position')
 plt.ylabel('Y Position')
-plt.title('Kepler Orbit (CN METHOD)')
+plt.title('Kepler Orbit (INVERSE EULER METHOD)')
 plt.show()  
-
