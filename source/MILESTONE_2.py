@@ -13,7 +13,7 @@ to = 0                  # Initial time
 dt = 0.001                # Time step size
 
 
-# 1. Write a function called EULER to integrate one step
+# 1. Write a function called EULER to integrate one step (test)
 
 def Euler(Uo, dt, to, F): 
    
