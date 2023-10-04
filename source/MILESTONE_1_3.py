@@ -8,7 +8,7 @@ import numpy as np
     
 U = array( [ 1, 0, 0, 1 ])
     
-N = 10000
+N = 100
 x = array( zeros(N) )
 y = array( zeros(N) )
 t = array( zeros(N) )
@@ -36,7 +36,7 @@ def RK4(U, dt, t, F ):
 
 for i in range(1, N): 
 
-      dt = 0.01 
+      dt = 0.1 
       t[i] = dt*i
       U = RK4 (U, dt, t, Kepler)
       x[i] = U[0] 
@@ -45,5 +45,5 @@ for i in range(1, N):
 plt.plot(x, y)
 plt.xlabel('X Position')
 plt.ylabel('Y Position')
-plt.title('Kepler Orbit (RK4 METHOD)')
+plt.title('Kepler Orbit (RK4 METHOD) for N={} and dt={}'.format(N,dt))
 plt.show()  

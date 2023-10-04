@@ -47,6 +47,6 @@ for i in range(1, N):
 plt.plot(x, y)
 plt.xlabel('X Position')
 plt.ylabel('Y Position')
-plt.title('Kepler Orbit (CN METHOD)')
+plt.title('Kepler Orbit (CN METHOD) for N={} and dt={}'.format(N,dt))
 plt.show()  
 

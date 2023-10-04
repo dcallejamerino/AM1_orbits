@@ -39,12 +39,12 @@ for i in range(1, N):
 plt.plot(x,y)
 plt.xlabel('X Position')
 plt.ylabel('Y Position')
-plt.title('Kepler Orbit (EULER METHOD)')
+plt.title('Kepler Orbit (EULER METHOD) for N={} and dt={}'.format(N,dt))
 plt.show()
 
-## Old version before moving to time domain
+# Old version before moving to time domain
 # for i in range(1,N):
-#     #F = array( [ U[2], U[3], -U[0]/(U[0]**2+U[1]**2)**1.5, -U[1]/(U[0]**2+U[1]**2)**1.5 ] ) 
+# #     F = array( [ U[2], U[3], -U[0]/(U[0]**2+U[1]**2)**1.5, -U[1]/(U[0]**2+U[1]**2)**1.5 ] ) 
 #     F = F_Kepler (U)
 #     U = U + dt*F
 #     x[i] = U[0]

@@ -1,7 +1,9 @@
 # MILESTONE 2 
 
 from numpy import array, zeros
+import numpy as np
 from scipy.optimize import newton
+from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
 # The function F(U, t) of the Cauchy problem is input argument 
@@ -10,10 +12,10 @@ import matplotlib.pyplot as plt
 
 Uo = array( [1,0,0,1] ) # Initial value of U
 to = 0                  # Initial time
-dt = 0.001                # Time step size
+dt = 0.1                # Time step size
 
 
-# 1. Write a function called EULER to integrate one step (test)
+# 1. Write a function called EULER to integrate one step 
 
 def Euler(Uo, dt, to, F): 
    
@@ -63,6 +65,23 @@ def Inverse_Euler(Uo, dt, to, F):
 
 
 # 5. Write a function to integrate a Cauchy problem. Temporal scheme, initial condition and the function F(U, t) of the Cauchy problem should be input arguments.
+# The function F(U, t) of the Cauchy problem is input argument 
+# dU/dt= F(U,t)
+# U(to) = Uo
+
+def Cauchy(U, t):
+    F = -0.1 * U # Ramdom U which can be changed
+    dUdt = F
+    return dUdt
+
+t = np.linspace(0, 50)  # Time domain of U
+U = odeint(Cauchy, Uo, t)
+print(U)
+plt.plot(t, U)
+plt.xlabel('Time')
+plt.ylabel('U')
+plt.title('Solution to Cauchy Problem')
+plt.show()
 
 
 # 6. Write a function to express the force of the Kepler movement
@@ -79,22 +98,22 @@ def Kepler(Uo, t):
 
 # Perform one step of Euler method & print
 U1, t1 = Euler(Uo, dt, to, Kepler)
-print(f"For Euler at t={t1}, U(t) is approximately {U1}")
+print(f"For Euler at t={t1}, U(t1) is approximately {U1}")
 
 
 # Perform one step of CN method & print
 U1, t1 = CN(Uo, dt, to, Kepler)
-print(f"For CN at t={t1}, U(t) is approximately {U1}")
+print(f"For CN at t={t1}, U(t1) is approximately {U1}")
 
 
 # Perform one step of RK4 method & print
 U1, t1 = RK4(Uo, dt, to, Kepler)
-print(f"For RK4 at t={t1}, U(t) is approximately {U1}")
+print(f"For RK4 at t={t1}, U(t1) is approximately {U1}")
 
 
 # Perform one step of Inverse Euler method & print
 U1, t1 = Inverse_Euler(Uo, dt, to, Kepler)
-print(f"For Inverse Euler at t={t1}, U(t) is approximately {U1}")
+print(f"For Inverse Euler at t={t1}, U(t1) is approximately {U1}")
 
 # 8. Increase and decrease the time step and explained the results
 # Smaller dt shows a closer value of U1 vs U0 and more similarity between methods, while big dt shows less accuracy on implicit methods
