@@ -1,9 +1,6 @@
 # Differential Equations
 
 from numpy import array, zeros
-import numpy as np
-from scipy.optimize import newton
-import matplotlib.pyplot as plt
 
 # Write a function to express the force of the Kepler movement (State vector 4 rows & 1 column)
 # Initial value of U: U = array( [1,0,0,1] ) 

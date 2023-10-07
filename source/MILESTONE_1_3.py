@@ -1,10 +1,8 @@
-# MILESTONE 1&2 Write a script to integrate Kepler Orbits with Euler, Crank-Nicolson and RK4 Method
+# MILESTONE 1&2 Write a script to integrate Kepler Orbits with  RK4 Method
 # rk4
 
-from numpy import array, zeros, linspace
-from scipy.optimize import fsolve
+from numpy import array, zeros
 import matplotlib.pyplot as plt
-import numpy as np
     
 U = array( [ 1, 0, 0, 1 ])
     

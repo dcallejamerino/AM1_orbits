@@ -4,7 +4,7 @@ from numpy import array, zeros, float64
 import numpy as np
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
-import Temporal_Schemes, Physics, Cauchy_problem
+import Temporal_Schemes, Physics
 
 #INPUTS:
     # F(U,t) : Function dU/dt = F(U,t) -> from Physics.py

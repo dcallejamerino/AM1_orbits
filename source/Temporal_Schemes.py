@@ -1,7 +1,6 @@
 #Temporal Schemes
 
 from numpy import array, zeros
-import numpy as np
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
 

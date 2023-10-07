@@ -1,11 +1,10 @@
-# MILESTONE 2 why 
+# MILESTONE 2
 #Integration of Kepler into different methods
 
 from numpy import array, zeros
-import numpy as np
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
-import Temporal_Schemes, Physics, Cauchy_problem
+import Temporal_Schemes, Physics
 
 # 7. Integrate a Kepler with these latter schemes and explain the results
 
@@ -98,7 +97,7 @@ plt.show()
 
 U = array( [1,0,0,1] ) # Initial value of U
 
-N = 25
+N = 20
 dt = 0.1
 
 x = array( zeros(N) )
