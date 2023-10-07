@@ -3,7 +3,6 @@
 from numpy import array, zeros
 import numpy as np
 from scipy.optimize import newton
-from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
 # Write a function to express the force of the Kepler movement (State vector 4 rows & 1 column)

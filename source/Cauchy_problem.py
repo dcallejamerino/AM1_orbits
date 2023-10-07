@@ -1,5 +1,11 @@
 # Write a function to integrate a Cauchy problem. Temporal scheme, initial condition and the function F(U, t) of the Cauchy problem should be input arguments.
 
+from numpy import array, zeros, float64
+import numpy as np
+from scipy.optimize import newton
+import matplotlib.pyplot as plt
+import Temporal_Schemes, Physics, Cauchy_problem
+
 #INPUTS:
     # F(U,t) : Function dU/dt = F(U,t) -> from Physics.py
     # t : time partition t (vector of length N+1)

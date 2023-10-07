@@ -4,7 +4,6 @@
 from numpy import array, zeros
 import numpy as np
 from scipy.optimize import newton
-from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 import Temporal_Schemes, Physics, Cauchy_problem
 

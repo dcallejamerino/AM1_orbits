@@ -3,7 +3,6 @@
 from numpy import array, zeros
 import numpy as np
 from scipy.optimize import newton
-from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
 #INPUTS:
@@ -17,6 +16,7 @@ import matplotlib.pyplot as plt
 
 #OTHERS:
     # U(to) = Uo are the initial conditions for t=0
+
 
 # 1. Write a function called EULER to integrate one step 
 
