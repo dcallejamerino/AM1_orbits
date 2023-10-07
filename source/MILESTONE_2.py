@@ -1,4 +1,4 @@
-# MILESTONE 2 
+# MILESTONE 2 why 
 #Integration of Kepler into different methods
 
 from numpy import array, zeros
