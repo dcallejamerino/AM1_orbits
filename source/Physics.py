@@ -22,3 +22,12 @@ def Oscillator(U, t):
 
     return  array( [ dxdt, -x ] ) 
 
+
+def Clase(U, t): 
+
+    x = U[0]
+    y = U[1]
+    
+    return  array ( [3*x-2*y, 2*x-2*y] )
+
+
