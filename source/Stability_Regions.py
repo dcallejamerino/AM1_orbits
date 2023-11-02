@@ -35,15 +35,15 @@ def Stability_region(scheme,N,x0,xf,y0,yf):
     return (x, y, rho) 
 
 
-(x, y, rho) = Stability_region(Euler,100,-4,4,-4,4)
-plt.contour( x, y, transpose(rho), linspace(0, 1, 11) )
-plt.axis('equal')
-plt.grid()
-plt.show()
+# (x, y, rho) = Stability_region(Euler,100,-4,4,-4,4)
+# plt.contour( x, y, transpose(rho), linspace(0, 1, 11) )
+# plt.axis('equal')
+# plt.grid()
+# plt.show()
 
 
 
-def test_stability_regions ():
+def test_stability_regions():
 
     schemes = [Temporal_Schemes.Euler,Temporal_Schemes.RK4, Temporal_Schemes.CN, Temporal_Schemes.Inverse_Euler]
 
@@ -53,3 +53,5 @@ def test_stability_regions ():
         plt.axis('equal')
         plt.grid()
         plt.show()
+
+test_stability_regions()
