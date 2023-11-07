@@ -1,7 +1,6 @@
 # Differential Equations
 
-from numpy import array, zeros
-import math
+from numpy import array, zeros,cos
 
 # Write a function to express the force of the Kepler movement (State vector 4 rows & 1 column)
 # Initial value of U: U = array( [1,0,0,1] ) 
