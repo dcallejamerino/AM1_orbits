@@ -33,34 +33,34 @@ def Cauchy_problem(F, t, dt, Uo, temporal_scheme):
     return U, x, y  # Return the U matrix and x & y values (please note that depending on U, they may not mean x and y, maybe x and dx/dt)
 
 
-# Let's test it:
+#Let's test it:
 
-# #1. OSCILLATOR
-# # Introduce inputs: MANUALLY
-# F = Physics.Oscillator
-# t = np.linspace(0, 1000, 1001)  # Assuming you want to create a time vector from 0 to 1000
-# dt = 0.1
-# Uo = array([1, 0])
-# temporal_scheme = Temporal_Schemes.CN
+#1. OSCILLATOR
+# Introduce inputs: MANUALLY
+F = Physics.Oscillator
+t = np.linspace(0, 1000, 1001)  # Assuming you want to create a time vector from 0 to 1000
+dt = 0.1
+Uo = array([1, 0])
+temporal_scheme = Temporal_Schemes.CN
 
-# # Call the Cauchy_problem function
-# U, x, y = Cauchy_problem(F, t, dt, Uo, temporal_scheme)
+# Call the Cauchy_problem function
+U, x, y = Cauchy_problem(F, t, dt, Uo, temporal_scheme)
 
-# # Plot x e y
-# plt.plot(x, y)              #need to select MANUALLY what we want to plot, will depend on the Physics (2 or 4 values? against t?)
-# plt.xlabel('X Position')    #take 1st argument MANUALLY from previous line (for the description)
-# plt.ylabel('Y Position')    #take 2nd argument MANUALLY from previous line  (for the description)
-# TS_name = temporal_scheme.__name__
-# F_name = F.__name__
-# plt.title('Cauchy function using {} temporal scheme, to resolve a {} being the initial conditions Uo {} and the time domain t={}  dt={}'.format(TS_name,F_name,Uo,t[-1],dt))
-# plt.show()
+# Plot x e y
+plt.plot(x, y)              #need to select MANUALLY what we want to plot, will depend on the Physics (2 or 4 values? against t?)
+plt.xlabel('X Position')    #take 1st argument MANUALLY from previous line (for the description)
+plt.ylabel('Y Position')    #take 2nd argument MANUALLY from previous line  (for the description)
+TS_name = temporal_scheme.__name__
+F_name = F.__name__
+plt.title('Cauchy function using {} temporal scheme, to resolve a {} being the initial conditions Uo {} and the time domain t={}  dt={}'.format(TS_name,F_name,Uo,t[-1],dt))
+plt.show()
 
-# # Plot t e x
-# plt.plot(t, x)              #need to select MANUALLY what we want to plot, will depend on the Physics (2 or 4 values? against t?)
-# plt.xlabel('t Position')    #take 1st argument MANUALLY from previous line (for the description)
-# plt.ylabel('x Position')    #take 2nd argument MANUALLY from previous line  (for the description)
-# TS_name = temporal_scheme.__name__
-# F_name = F.__name__
-# plt.title('Cauchy function using {} temporal scheme, to resolve a {} being the initial conditions Uo {} and the time domain t={}  dt={}'.format(TS_name,F_name,Uo,t[-1],dt))
-# plt.show()
+# Plot t e x
+plt.plot(t, x)              #need to select MANUALLY what we want to plot, will depend on the Physics (2 or 4 values? against t?)
+plt.xlabel('t Position')    #take 1st argument MANUALLY from previous line (for the description)
+plt.ylabel('x Position')    #take 2nd argument MANUALLY from previous line  (for the description)
+TS_name = temporal_scheme.__name__
+F_name = F.__name__
+plt.title('Cauchy function using {} temporal scheme, to resolve a {} being the initial conditions Uo {} and the time domain t={}  dt={}'.format(TS_name,F_name,Uo,t[-1],dt))
+plt.show()
 
