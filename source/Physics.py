@@ -1,6 +1,7 @@
 # Differential Equations
 
 from numpy import array, zeros
+import math
 
 # Write a function to express the force of the Kepler movement (State vector 4 rows & 1 column)
 # Initial value of U: U = array( [1,0,0,1] ) 
@@ -36,3 +37,10 @@ def Clase2(U, t):
     y = U[1]
     
     return  array ( [1-4*x+y*x**2, 3*x-y*x**2] )
+
+def Clase3(U, t): #Duffing con k=1, B=1
+
+    x = U[0]
+    y = U[1]
+    
+    return  array ( [y, -x**3-y+cos(t)] )
