@@ -95,7 +95,7 @@ t = np.linspace(500, 1000, 1001)  # Assuming you want to create a time vector fr
 dt = 0.1
 Uo = array([1.125, 1.874])
 temporal_scheme = Temporal_Schemes.RK4
-U, x1, y1 = Cauchy_problem(F, t, dt, Uo, temporal_scheme)
+U, x1, y1 = Cauchy_problem.Cauchy_problem(F, t, dt, Uo, temporal_scheme)
 
 # Plot x e y
 plt.plot(x1,y1)
