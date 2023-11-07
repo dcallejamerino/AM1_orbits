@@ -30,4 +30,9 @@ def Clase(U, t):
     
     return  array ( [3*x-2*y, 2*x-2*y] )
 
+def Clase2(U, t): 
 
+    x = U[0]
+    y = U[1]
+    
+    return  array ( [1-4*x+y*x**2, 3*x-y*x**2] )
