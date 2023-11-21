@@ -1,5 +1,5 @@
 # MILESTONE 1&2 Write a script to integrate Kepler Orbits with  RK4 Method
-# rk4
+# 3. RK4
 
 from numpy import array, zeros
 import matplotlib.pyplot as plt

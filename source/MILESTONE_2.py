@@ -1,13 +1,23 @@
 # MILESTONE 2
-#Integration of Kepler into different methods
 
 from numpy import array, zeros
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
 import Temporal_Schemes, Physics
 
-# 7. Integrate a Kepler with these latter schemes and explain the results
+# 1. Write a function called Euler to integrate one step: Refer to Temporal_Schemes
 
+# 2. Write a function called Crank_Nicolson to integrate one step: Refer to Temporal_Schemes
+
+# 3. Write a function called RK4 to integrate one step: Refer to Temporal_Schemes
+
+# 4. Write a function called Inverse_Euler to integrate one step: Refer to Temporal_Schemes
+
+# 5. Write a function to integrate a Cauchy problem: Refer to Cauchy_problem
+
+# 6. Write a function to express the force of the Kepler movement: Refer to Physics
+
+# 7. Integrate a Kepler with these latter schemes and explain the results
 
 # 7.1 Kepler with Euler method & print
 

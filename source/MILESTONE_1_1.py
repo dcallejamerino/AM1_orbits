@@ -1,5 +1,5 @@
 # MILESTONE 1 Write a script to integrate Kepler Orbits with Euler
-# EULER
+# 1. EULER
 
 from numpy import array,zeros
 import matplotlib.pyplot as plt

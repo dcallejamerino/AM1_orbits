@@ -1,5 +1,5 @@
 # MILESTONE 1 Write a script to integrate Kepler Orbits with Crank-Nicolson
-# Crank-Nicolson
+# 2. Crank-Nicolson
 
 from numpy import array, zeros
 from scipy.optimize import newton
