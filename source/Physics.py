@@ -71,3 +71,19 @@ def Clase7(U, t): #Rayleigh fo=0.6 (periodico), f0=0.7 (ciclo doble: se repite c
     y = U[1]
     
     return  array ( [y, x-x**3-y+0.6*cos(t)] )
+
+def Clase8(U, t): #Lorentz para b=8/3, r=28, s=10
+
+    x = U[0]
+    y = U[1]
+    z = U[2]
+    
+    return  array ( [-10*x+10*y, 28*x-x*z-y, -8/3*z+x*y] )
+
+def Clase9(U, t): #Rossler para b=2, c=4, a=0.398 y Rossler para b=0.4, c=8.5, a=0.17
+
+    x = U[0]
+    y = U[1]
+    z = U[2]
+    
+    return  array ( [-y-z, 0.17*y+x, 0.4+z*x-z*8.5] )

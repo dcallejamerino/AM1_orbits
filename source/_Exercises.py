@@ -1,10 +1,13 @@
-# Write a function to integrate a Cauchy problem. Temporal scheme, initial condition and the function F(U, t) of the Cauchy problem should be input arguments.
+# Ejercicios clase de teoria.
 
 from numpy import array, zeros, float64, arange
 import numpy as np
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.animation import FuncAnimation
 import Temporal_Schemes, Physics, Cauchy_problem
+
 
 # # 1. PUNTO DE SILLA
 # # Introduce inputs: MANUALLY - BISECTRIZ
@@ -245,7 +248,7 @@ import Temporal_Schemes, Physics, Cauchy_problem
 # plt.show()
 
 
-# # 6. VAN DER POEL - CICLO LIMITE
+# # 6. VAN DER POL - CICLO LIMITE
 # # Introduce inputs: 
 
 # F = Physics.Clase6
@@ -265,30 +268,124 @@ import Temporal_Schemes, Physics, Cauchy_problem
 # plt.title('Cauchy function using {} temporal scheme, to resolve a {}'.format(TS_name,F_name))
 # plt.show()
 
-# 7. RAYLEIGH - CICLO LIMITE
-# Introduce inputs: 
+# # 7. RAYLEIGH - CICLO LIMITE
+# # Introduce inputs: 
 
-F = Physics.Clase7
+# F = Physics.Clase7
+# dt = 0.01
+# t = arange(0, 300, dt)  
+# Uo = array([0, 0])
+# temporal_scheme = Temporal_Schemes.RK4
+# U, x1, y1 = Cauchy_problem.Cauchy_problem(F, t, dt, Uo, temporal_scheme)
+
+# F = Physics.Clase7
+# dt = 0.01
+# t = arange(0, 300, dt)  
+# Uo = array([1, 0])
+# temporal_scheme = Temporal_Schemes.RK4
+# U, x2, y2 = Cauchy_problem.Cauchy_problem(F, t, dt, Uo, temporal_scheme)
+
+# # Plot x e t
+# #plt.plot(t,x2)
+# plt.plot( x2 , y2, "." )
+
+
+# plt.xlabel('x Position')    #take 1st argument MANUALLY from previous line (for the description)
+# plt.ylabel('y Position')    #take 2nd argument MANUALLY from previous line  (for the description)
+# TS_name = temporal_scheme.__name__
+# F_name = F.__name__
+# plt.title('Cauchy function using {} temporal scheme, to resolve a {}'.format(TS_name,F_name))
+# plt.show()
+
+
+# # 8. LORENTZ 
+# # Introduce inputs para primera condicion inicial: 
+
+# F = Physics.Clase8
+# dt = 0.01
+# t = arange(0, 50, dt)  
+# Uo = array([3, 3, 3])
+# temporal_scheme = Temporal_Schemes.RK4
+# U, x1, y1, z1 = Cauchy_problem.Cauchy_problem_3D(F, t, dt, Uo, temporal_scheme)
+
+# # Introduce inputs para segunda condicion inicial: 
+
+# F = Physics.Clase8
+# dt = 0.01
+# t = arange(0, 50, dt)  
+# Uo = array([6, 6, 6])
+# temporal_scheme = Temporal_Schemes.RK4
+# U, x2, y2, z2 = Cauchy_problem.Cauchy_problem_3D(F, t, dt, Uo, temporal_scheme)
+
+# # Plot 3D
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+# ax.plot(x1, y1, z1, label='Uo = ([3, 3, 3])')
+# ax.plot(x2, y2, z2, label='Uo = ([6, 6, 6])')
+# # Establecer etiquetas para los ejes
+# ax.set_xlabel('X Label')
+# ax.set_ylabel('Y Label')
+# ax.set_zlabel('Z Label')
+# # Mostrar la leyenda
+# ax.legend()
+# # Plot 3D
+# TS_name = temporal_scheme.__name__
+# F_name = F.__name__
+# plt.title('Cauchy function using {} temporal scheme, to resolve a {}'.format(TS_name,F_name))
+# plt.show()
+
+# # Plot 2D: x e t
+# plt.plot(t,x1)
+# plt.plot(t,x2)
+# plt.xlabel('t Position')    #take 1st argument MANUALLY from previous line (for the description)
+# plt.ylabel('x Position')    #take 2nd argument MANUALLY from previous line  (for the description)
+# TS_name = temporal_scheme.__name__
+# F_name = F.__name__
+# plt.title('Cauchy function using {} temporal scheme, to resolve a {}'.format(TS_name,F_name))
+# plt.show()
+
+
+# 9. ROSSLER
+# Introduce inputs para primera condicion inicial: 
+
+F = Physics.Clase9
 dt = 0.01
-t = arange(0, 300, dt)  
-Uo = array([0, 0])
+t = arange(0, 200, dt)  
+Uo = array([-1, 1, 1])
 temporal_scheme = Temporal_Schemes.RK4
-U, x1, y1 = Cauchy_problem.Cauchy_problem(F, t, dt, Uo, temporal_scheme)
+U, x1, y1, z1 = Cauchy_problem.Cauchy_problem_3D(F, t, dt, Uo, temporal_scheme)
 
-F = Physics.Clase7
+# Introduce inputs para segunda condicion inicial: 
+
+F = Physics.Clase9
 dt = 0.01
-t = arange(0, 300, dt)  
-Uo = array([1, 0])
+t = arange(0, 200, dt)  
+Uo = array([0, 0, 0])
 temporal_scheme = Temporal_Schemes.RK4
-U, x2, y2 = Cauchy_problem.Cauchy_problem(F, t, dt, Uo, temporal_scheme)
+U, x2, y2, z2 = Cauchy_problem.Cauchy_problem_3D(F, t, dt, Uo, temporal_scheme)
 
-# Plot x e t
-#plt.plot(t,x2)
-plt.plot( x2 , y2, "." )
+# Plot 3D
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(x1, y1, z1, label='Uo = ([-1, 1, 1])')
+ax.plot(x2, y2, z2, label='Uo = ([0, 0, 0])')
+# Establecer etiquetas para los ejes
+ax.set_xlabel('X Label')
+ax.set_ylabel('Y Label')
+ax.set_zlabel('Z Label')
+# Mostrar la leyenda
+ax.legend()
+# Plot 3D
+TS_name = temporal_scheme.__name__
+F_name = F.__name__
+plt.title('Cauchy function using {} temporal scheme, to resolve a {}'.format(TS_name,F_name))
+plt.show()
 
-
-plt.xlabel('x Position')    #take 1st argument MANUALLY from previous line (for the description)
-plt.ylabel('y Position')    #take 2nd argument MANUALLY from previous line  (for the description)
+# Plot 2D: x e t
+plt.plot(t,x1)
+plt.plot(t,x2)
+plt.xlabel('t Position')    #take 1st argument MANUALLY from previous line (for the description)
+plt.ylabel('x Position')    #take 2nd argument MANUALLY from previous line  (for the description)
 TS_name = temporal_scheme.__name__
 F_name = F.__name__
 plt.title('Cauchy function using {} temporal scheme, to resolve a {}'.format(TS_name,F_name))

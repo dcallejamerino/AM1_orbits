@@ -17,7 +17,7 @@ import Temporal_Schemes, Physics
     # U: matrix[Nv, N+1], Nv state values at N+1 time steps 
 
 
-# Cauchy
+# # Cauchy 2D
 def Cauchy_problem(F, t, dt, Uo, temporal_scheme):
     Nv = len(Uo)  # number of rows needed
     N = len(t) - 1  # number of columns needed
@@ -31,6 +31,23 @@ def Cauchy_problem(F, t, dt, Uo, temporal_scheme):
     y = U[1, :]  # Collect y values or values of the 1st row
 
     return U, x, y  # Return the U matrix and x & y values (please note that depending on U, they may not mean x and y, maybe x and dx/dt)
+
+# # CAUCHY 3D
+# Cauchy
+def Cauchy_problem_3D(F, t, dt, Uo, temporal_scheme):
+    Nv = len(Uo)  # number of rows needed
+    N = len(t) - 1  # number of columns needed
+    U = zeros((Nv, N + 1), dtype=float64)
+    U[:, 0] = Uo
+
+    for i in range(N):
+        U[:, i + 1] = temporal_scheme(U[:, i], t[i], dt, F)
+
+    x = U[0, :]  # Collect x values or values of the 1st row
+    y = U[1, :]  # Collect y values or values of the 2nd row
+    z = U[2, :]  # Collect y values or values of the 2nd row
+
+    return U, x, y, z
 
 
 #Let's test it:
