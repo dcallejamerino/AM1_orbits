@@ -6,7 +6,9 @@ from scipy.optimize import newton
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
-import Temporal_Schemes, Physics, Cauchy_problem
+from Common.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler
+from Common.Physics import Clase, Clase2, Clase3, Clase4, Clase5, Clase6, Clase7, Clase8, Clase9
+from Common.Cauchy_problem import Cauchy_problem, Cauchy_problem_3D
 
 
 # # 1. PUNTO DE SILLA

@@ -28,7 +28,7 @@ def Cauchy_problem(F, t, dt, Uo, temporal_scheme):
         U[:, i + 1] = temporal_scheme(U[:, i], t[i], dt, F)
 
     x = U[0, :]  # Collect x values or values of the 1st row
-    y = U[1, :]  # Collect y values or values of the 1st row
+    y = U[1, :]  # Collect y values or values of the 2nd row
 
     return U, x, y  # Return the U matrix and x & y values (please note that depending on U, they may not mean x and y, maybe x and dx/dt)
 
@@ -45,7 +45,7 @@ def Cauchy_problem_3D(F, t, dt, Uo, temporal_scheme):
 
     x = U[0, :]  # Collect x values or values of the 1st row
     y = U[1, :]  # Collect y values or values of the 2nd row
-    z = U[2, :]  # Collect y values or values of the 2nd row
+    z = U[2, :]  # Collect y values or values of the 3rd row
 
     return U, x, y, z
 
