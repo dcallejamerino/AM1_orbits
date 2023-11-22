@@ -1,5 +1,5 @@
-from numpy import linspace, size, zeros, log10, float64
-from numpy.linalg import norm
+from numpy import linspace, size, zeros, log10, float64, ones, vstack
+from numpy.linalg import norm, lstsq
 import numpy as np
 import Temporal_Schemes, Cauchy_problem
 
@@ -35,10 +35,14 @@ def Richardson_error(F, t, dt, Uo, temporal_scheme):
     Nv = len(Uo)  # number of rows needed for E
     N = len(t) - 1  # number of columns needed for E
 
-    E = np.zeros([Nv, N+1]) #  doubts if it is E = np.zeros([Nv, N+1])
-
     t1 = t
-    t2 = np.linspace(0, t[N-1], 2*N) # Assuming you want to create a time vector from 0 to t[N-1]
+    t2 = zeros(2*N+1) 
+    E = np.zeros([Nv, N+1],dtype=float64) 
+    
+    for i in range(N):  
+        t2[2*i]   = t1[i] 
+        t2[2*i+1] = ( t1[i] + t1[i+1] )/2
+    t2[2*N] = t1[N]
 
 
     # Calculation of solutions for two different steps
@@ -55,9 +59,9 @@ def Richardson_error(F, t, dt, Uo, temporal_scheme):
     
     # Error calculation
 
-    for i in range(N):
-        E[:, i] = (U2[:, 2*i] - U1[:, i]) / (1 - 1/(2**q))
-
+    for i in range(N+1):
+        E[:, i] = (U2[:, 2*i] - U1[:, i]) / (1 - 1./(2**q))
+    
     return E
 
 
@@ -101,28 +105,45 @@ def Richardson_error(F, t, dt, Uo, temporal_scheme):
 
 #         U = U2N
 #         print(i)
-
+#         print(Nlog, Elog)
+        
 #     return [Elog, Nlog]
 
-def Convergency(F, t, dt, Uo, temporal_scheme, p):
-    tf = t[-1]  # Use the last element of the time vector
 
-    E = np.zeros(p)
+def Convergency(F, t, dt, Uo, temporal_scheme, p):
+    
     Elog = np.zeros(p)
     Nlog = np.zeros(p)
+    N = len(t)-1
+    t1 = t
+    U1 = Cauchy_problem_rich(F, t1, dt, Uo, temporal_scheme)
 
-    U = Cauchy_problem_rich(F, t, dt, Uo, temporal_scheme)
-
-    for i in range(p):
-        t2 = linspace(0, tf, int((2**i)*len(t)))  # Use int() to ensure a valid array size
-        U2N = Cauchy_problem_rich(F, t2, dt, Uo, temporal_scheme)
-
-        E[i] = norm(U2N[:, -1] - U[:, int(len(t2)/2 - 1)])
-        Elog[i] = log10(E[i])
-        Nlog[i] = log10((2**i)*len(t))
-
-        U = U2N
-        print(i)
+    for i in range(p): 
+         N =  2 * N 
+         t2 = np.array( zeros(N+1) )
+         t2[0:N+1:2] =  t1; t2[1:N:2] = ( t1[1:int(N/2)+1]  + t1[0:int(N/2)] )/ 2 
+         U2 = Cauchy_problem_rich(F, t2, dt, Uo, temporal_scheme)          
+        
+         E = norm( U2[:, N] - U1[:, int(N/2)] )  # CAMBIADO
+         Elog[i] = log10( E )  
+         Nlog[i] = log10( N )
+         t1 = t2;  
+         U1 = U2;   
+    
+    # Definition of the temporal scheme order
+    if temporal_scheme == Temporal_Schemes.RK4:
+        q = 4
+    elif temporal_scheme == Temporal_Schemes.CN:
+        q = 2
+    else:
+        q = 1
+        
+    for j in range(p): 
+         if abs(Elog[j]) > 12 :  break 
+         j = min(j, q-1) 
+         x = Nlog[j+1:0];  y = Elog[j+1:0] 
+         Elog = Elog - log10( 1 - 1./2**q) 
 
     return [Elog, Nlog]
 
+         

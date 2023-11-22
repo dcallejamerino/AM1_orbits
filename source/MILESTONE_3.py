@@ -1,6 +1,6 @@
 # MILESTONE 3
 
-from numpy import array, zeros, float64, arange
+from numpy import array, zeros, float64, arange,linspace
 from scipy.optimize import newton
 import numpy as np
 import matplotlib.pyplot as plt
@@ -29,32 +29,33 @@ Uo = array( [1,0,0,1] )
 temporal_scheme = Temporal_Schemes.Euler
 
 E_EULER = Richardson.Richardson_error(F, t, dt, Uo, temporal_scheme)
+plt.axis('equal')
 plt.plot(t, E_EULER[0,:],label='EULER')
 
-# CN
-F = Physics.Kepler
-dt = 0.01
-t = arange(0, 200, dt)  
-Uo = array( [1,0,0,1] ) 
-temporal_scheme = Temporal_Schemes.CN
+# # CN
+# F = Physics.Kepler
+# dt = 0.01
+# t = arange(0, 200, dt)  
+# Uo = array( [1,0,0,1] ) 
+# temporal_scheme = Temporal_Schemes.CN
 
-E_CN = Richardson.Richardson_error(F, t, dt, Uo, temporal_scheme)
-plt.plot(t, E_CN[0,:],label='CN')
+# E_CN = Richardson.Richardson_error(F, t, dt, Uo, temporal_scheme)
+# plt.plot(t, E_CN[0,:],label='CN')
 
-# RK4
-F = Physics.Kepler
-dt = 0.01
-t = arange(0, 200, dt)  
-Uo = array( [1,0,0,1] ) 
-temporal_scheme = Temporal_Schemes.RK4
+# # RK4
+# F = Physics.Kepler
+# dt = 0.01
+# t = arange(0, 200, dt)  
+# Uo = array( [1,0,0,1] ) 
+# temporal_scheme = Temporal_Schemes.RK4
 
-E_RK4 = Richardson.Richardson_error(F, t, dt, Uo, temporal_scheme)
-plt.plot(t, E_RK4[0,:],label='RK4')
+# E_RK4 = Richardson.Richardson_error(F, t, dt, Uo, temporal_scheme)
+# plt.plot(t, E_RK4[0,:],label='RK4')
 
-# # Inverse Euler
+# Inverse Euler - It does not converge, so it is only evaluated in a shorter time domain
 # F = Physics.Kepler
 # dt = 0.1
-# t = np.linspace(0, 20, 21) 
+# t = np.linspace(0, 11, 12) 
 # Uo = array( [1,0,0,1] ) 
 # temporal_scheme = Temporal_Schemes.Inverse_Euler
 
@@ -62,8 +63,11 @@ plt.plot(t, E_RK4[0,:],label='RK4')
 # plt.plot(t, E_IE[0,:],label='Inverse_Euler')
 
 #Graph
+
 plt.xlabel('t')
 plt.ylabel('ERROR') 
+plt.axis('equal')
+plt.grid()
 plt.legend()
 plt.title('Numerical error of different schemes solving Kepler')
 plt.show()
@@ -87,40 +91,49 @@ plt.show()
 
 # Euler
 F = Physics.Kepler
-dt = 0.01
-t = arange(0, 200, dt)  
-Uo = array( [1,0,0,1] ) 
+
+# dt = 0.01
+# t = arange(0, 200, dt)  
+
+
+N = 2000
+t = linspace(0, 10, N) 
+
+
+Uo = array( [1,0,0,1] )
 temporal_scheme = Temporal_Schemes.Euler
 p=5
 
 [log_E_EULER, log_N_EULER] = Richardson.Convergency(F, t, dt, Uo, temporal_scheme,p)
 plt.plot(log_N_EULER, log_E_EULER,label='EULER')
 
-# CN
-F = Physics.Kepler
-dt = 0.01
-t = arange(0, 200, dt)  
-Uo = array( [1,0,0,1] ) 
-temporal_scheme = Temporal_Schemes.CN
-p=5
+# # CN
+# F = Physics.Kepler
+# dt = 0.01
+# t = arange(0, 200, dt)  
+# Uo = array( [1,0,0,1] ) 
+# temporal_scheme = Temporal_Schemes.CN
+# p=5
 
-[log_E_CN, log_N_CN] = Richardson.Convergency(F, t, dt, Uo, temporal_scheme,p)
-plt.plot(log_N_CN, log_E_CN,label='CN')
+# [log_E_CN, log_N_CN] = Richardson.Convergency(F, t, dt, Uo, temporal_scheme,p)
+# plt.plot(log_N_CN, log_E_CN,label='CN')
 
-# RK4
-F = Physics.Kepler
-dt = 0.01
-t = arange(0, 200, dt)  
-Uo = array( [1,0,0,1] ) 
-temporal_scheme = Temporal_Schemes.RK4
-p=5
+# # RK4
+# F = Physics.Kepler
+# dt = 0.01
+# t = arange(0, 200, dt)  
+# Uo = array( [1,0,0,1] ) 
+# temporal_scheme = Temporal_Schemes.RK4
+# p=5
 
-[log_E_RK4, log_N_RK4] = Richardson.Convergency(F, t, dt, Uo, temporal_scheme,p)
-plt.plot(log_N_RK4, log_E_RK4,label='RK4')
+# [log_E_RK4, log_N_RK4] = Richardson.Convergency(F, t, dt, Uo, temporal_scheme,p)
+# plt.plot(log_N_RK4, log_E_RK4,label='RK4')
 
 #Graph
 plt.xlabel('log_N')
 plt.ylabel('log_E') 
+plt.axis('equal')
+plt.grid()
 plt.legend()
 plt.title('Convergence rate of the different methods solving Kepler')
 plt.show()
