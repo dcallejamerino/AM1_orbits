@@ -6,9 +6,9 @@ from scipy.optimize import newton
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
-from Common.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler
-from Common.Physics import Clase, Clase2, Clase3, Clase4, Clase5, Clase6, Clase7, Clase8, Clase9
-from Common.Cauchy_problem import Cauchy_problem, Cauchy_problem_3D
+from Temporal_Schemes import Euler, CN, RK4, Inverse_Euler
+from Physics import Clase, Clase2, Clase3, Clase4, Clase5, Clase6, Clase7, Clase8, Clase9
+from Cauchy_problem import Cauchy_problem, Cauchy_problem_3D
 
 
 # # 1. PUNTO DE SILLA
@@ -396,20 +396,20 @@ from Common.Cauchy_problem import Cauchy_problem, Cauchy_problem_3D
 # 9. ROSSLER ANIMATED
 # Introduce inputs para primera condicion inicial: 
 
-F = Physics.Clase9
+F = Clase9
 dt = 0.01
 t = arange(0, 200, dt)  
 Uo = array([-1, 1, 1])
-temporal_scheme = Temporal_Schemes.RK4
+temporal_scheme = RK4
 U, x1, y1, z1 = Cauchy_problem.Cauchy_problem_3D(F, t, dt, Uo, temporal_scheme)
 
 # Introduce inputs para segunda condicion inicial: 
 
-F = Physics.Clase9
+F = Clase9
 dt = 0.01
 t = arange(0, 200, dt)  
 Uo = array([0, 0, 0])
-temporal_scheme = Temporal_Schemes.RK4
+temporal_scheme = RK4
 U, x2, y2, z2 = Cauchy_problem.Cauchy_problem_3D(F, t, dt, Uo, temporal_scheme)
 
 # Plot 3D

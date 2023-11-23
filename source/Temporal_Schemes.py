@@ -4,6 +4,7 @@ from numpy import array, zeros
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
 
+# ------------------------------------------------------------------------------- #
 #INPUTS:
     # The function F(U, t) of the Cauchy problem is input argument: dU/dt= F(U,t) 
     # U (t) is the state vector
@@ -15,7 +16,7 @@ import matplotlib.pyplot as plt
 
 #OTHERS:
     # U(to) = Uo are the initial conditions for t=0
-
+# ------------------------------------------------------------------------------- #
 
 # 1. Write a function called EULER to integrate one step 
 

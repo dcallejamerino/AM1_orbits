@@ -55,9 +55,12 @@ def Temporal_convergence_rate( Time_Domain, Differential_operator,
          if abs(log_E[j]) > 12 :  break 
       j = min(j, m-1) 
       x = log_N[0:j+1];  y = log_E[0:j+1]
-      #A = vstack( [ x, ones(len(x)) ] ).T
-      #m, c = lstsq(A, y, rcond=None)[0]
-      #order = abs(m) 
-      log_E = log_E - log10( 1 - 1./2**1) 
+      A = vstack( [ x, ones(len(x)) ] ).T
+      m, c = lstsq(A, y, rcond=None)[0]
+      order = abs(m) 
+      log_E = log_E - log10( 1 - 1./2**order) 
+      
+      #print(j)
+      print(log_N, log_E)
 
       return log_E, log_N

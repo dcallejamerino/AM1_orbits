@@ -9,41 +9,55 @@ from matplotlib.animation import FuncAnimation
 import Temporal_Schemes, Physics, Cauchy_problem
 
 # # 3. DUFFING con k=1, B=1
+# ------------------------------------------------------------------------------- #
+#INPUTS CAUCHY:
+    # F(U,t) : Function dU/dt = F(U,t) -> from Physics.py
+    # dt: time step
+    # t : time partition t (vector of length N+1)
+    # Uo : initial condition at t=0
+    # Temporal_scheme is any of the numerical methods used to resolve the problem -> from Temporal_schemes.py
+# ------------------------------------------------------------------------------- #
+
 # # Introduce inputs
-F = Physics.Clase3
+# Primera CI
+F = Physics.Duffing0
 dt = 0.1
 t = arange(0, 1000, dt)  
 Uo = array([0, 0])
 temporal_scheme = Temporal_Schemes.RK4
-U, x1, y1 = Cauchy_problem.Cauchy_problem(F, t, dt, Uo, temporal_scheme)
+U, x1, y1 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
 
-F = Physics.Clase3
+# Segunda CI
+F = Physics.Duffing0
 dt = 0.1
 t = arange(0, 1000, dt)  
 Uo = array([0.2, 0.2])
 temporal_scheme = Temporal_Schemes.RK4
-U, x2, y2 = Cauchy_problem.Cauchy_problem(F, t, dt, Uo, temporal_scheme)
+U, x2, y2 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
 
-F = Physics.Clase3
+# Tercera CI
+F = Physics.Duffing0
 dt = 0.1
 t = arange(0, 1000, dt)  
 Uo = array([0.5, 0.5])
 temporal_scheme = Temporal_Schemes.RK4
-U, x3, y3 = Cauchy_problem.Cauchy_problem(F, t, dt, Uo, temporal_scheme)
+U, x3, y3 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
 
-F = Physics.Clase3
+# Cuarta CI
+F = Physics.Duffing0
 dt = 0.1
 t = arange(0, 1000, dt)  
 Uo = array([1.5, 1.5])
 temporal_scheme = Temporal_Schemes.RK4
-U, x4, y4 = Cauchy_problem.Cauchy_problem(F, t, dt, Uo, temporal_scheme)
+U, x4, y4 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
 
-F = Physics.Clase3
+# Quinta CI
+F = Physics.Duffing0
 dt = 0.1
 t = arange(0, 1000, dt)  
 Uo = array([2, 2])
 temporal_scheme = Temporal_Schemes.RK4
-U, x5, y5 = Cauchy_problem.Cauchy_problem(F, t, dt, Uo, temporal_scheme)
+U, x5, y5 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Plot
 plt.plot(x1,y1)
@@ -56,5 +70,5 @@ plt.xlabel('x Position')    #take 1st argument MANUALLY from previous line (for 
 plt.ylabel('y Position')    #take 2nd argument MANUALLY from previous line  (for the description)
 TS_name = temporal_scheme.__name__
 F_name = F.__name__
-plt.title('Cauchy function using {} temporal scheme, to resolve a {}'.format(TS_name,F_name))
+plt.title('Cauchy function using {} temporal scheme, to resolve {}'.format(TS_name,F_name))
 plt.show()
