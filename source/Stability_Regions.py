@@ -3,22 +3,17 @@ from scipy.optimize import newton
 import matplotlib.pyplot as plt
 import Temporal_Schemes, Physics
 
-# def Euler(U, dt, t, F): 
 
-#     return U + dt * F(U, t)
+### Stability Regions ###
+# ------------------------------------------------------------------------------- #
+#INPUTS:
+    # Temporal_scheme is any of the numerical methods used to resolve the problem -> from Temporal_schemes.py
+    # N: normally 100
+    # x0,xf,y0,yf: Limit values of the plane
 
-def Euler (U, t, dt, F): 
-    
-    return  U + dt * F(U,t)
-
-def RK4 (U, t, dt, F): 
-
-     k1 = F( U, t)
-     k2 = F( U + dt * k1/2, t + dt/2 )
-     k3 = F( U + dt * k2/2, t + dt/2 )
-     k4 = F( U + dt * k3,   t + dt   )
- 
-     return  U + dt * ( k1 + 2*k2 + 2*k3 + k4 )/6
+#RETURN:
+    # x, y, rho
+# ------------------------------------------------------------------------------- #
 
 
 def Stability_region(scheme,N,x0,xf,y0,yf): 
@@ -35,23 +30,16 @@ def Stability_region(scheme,N,x0,xf,y0,yf):
     return (x, y, rho) 
 
 
-# (x, y, rho) = Stability_region(Euler,100,-4,4,-4,4)
-# plt.contour( x, y, transpose(rho), linspace(0, 1, 11) )
-# plt.axis('equal')
-# plt.grid()
-# plt.show()
 
+# def test_stability_regions():
 
+#     schemes = [Temporal_Schemes.Euler,Temporal_Schemes.RK4, Temporal_Schemes.CN, Temporal_Schemes.Inverse_Euler]
 
-def test_stability_regions():
-
-    schemes = [Temporal_Schemes.Euler,Temporal_Schemes.RK4, Temporal_Schemes.CN, Temporal_Schemes.Inverse_Euler]
-
-    for scheme in schemes:
-        (x, y, rho) = Stability_region(scheme,100,-4,4,-4,4 )
-        plt.contour( x, y, transpose(rho), linspace(0, 1, 11) )
-        plt.axis('equal')
-        plt.grid()
-        plt.show()
-
-test_stability_regions()
+#     for scheme in schemes:
+#         (x, y, rho) = Stability_region(scheme,100,-4,4,-4,4 )
+#         plt.contour( x, y, transpose(rho), linspace(0, 1, 11) )
+#         plt.axis('equal')
+#         plt.grid()
+#         plt.show()
+#     print (x, y, rho)
+# test_stability_regions()
