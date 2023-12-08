@@ -48,16 +48,16 @@ def Init(Nc, Nb):
     
     # body 1 
     r0[0,:] = [2, 0, 0]                #initial position body 1
-    v0[0,:] = [0, 0.4, 0]              #initial speed body 1
+    v0[0,:] = [0, 0.8, 0]              #initial speed body 1
     #Body 2
     r0[1,:] = [-2, 0, 0]                #initial position body 2
-    v0[1,:] = [ 0, -0.4, 0]             #initial speed body 2
+    v0[1,:] = [ 0, -0.8, 0]             #initial speed body 2
     #Body 3
     r0[2,:] = [0, 2, 0 ]                #initial position body 3
-    v0[2,:] = [-0.4, 0., 0. ]           #initial speed body 3
+    v0[2,:] = [-0.8, 0., 0. ]           #initial speed body 3
     #Body 4
     r0[3,:] = [0, -2, 0]                 #initial position body 4
-    v0[3,:] = [0.4, 0., 0.]              #initial speed body 4
+    v0[3,:] = [0.8, 0., 0.]              #initial speed body 4
     
 
     return Uo 
@@ -66,7 +66,7 @@ def Init(Nc, Nb):
 # Definition of final time, number of divisions and initial conditions
 
 N =  1000                   # time steps 
-tf = 4 * 3.14               # final time 
+tf = 16 * 3.14               # final time 
 t = linspace(0, tf, N+1)    # Time(0:N)
 Uo = Init( Nc, Nb )
 
@@ -103,3 +103,5 @@ plt.ylabel("y")
 plt.grid()
 plt.show()
 
+
+# Different initial conditions can make the system to collapse. Higher initial speeds requires higher tf for a full orbit. Changed the IC to multiples of the originals to see how the system behave
