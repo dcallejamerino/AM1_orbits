@@ -58,6 +58,7 @@ U, x4, y4 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
 # dt = 0.01
 # t = arange(0, 200, dt)  
 # Uo = array([1, 0])
+# U1 = Uo + dt * F(Uo,t)
 # temporal_scheme = Temporal_Schemes.LF
 # U, x5, y5 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
 
