@@ -77,6 +77,21 @@ def F_NBody(U, t, Nb, Nc): #CHEQUADO: ESTE ES MI NBODY
 #      U : state vector
 #      r, v: position and velocity points to U     
 #------------------------------------------------------------------    
+
+# Definition of final time, number of divisions and initial conditions
+tf = 4 * 3.14
+N =  1000    # time steps 
+t = linspace(0, tf, N+1) # Time(0:N)
+Uo, Nc, Nb = Init()
+
+def F(U, t):
+   return Nbody_function.N_Body(U, t, Nb, Nc)
+
+
+temporal_scheme = Temporal_Schemes.RK4
+U  = Cauchy_problem_NBODY(F, t, Uo, temporal_scheme)
+
+
 def Integrate_NBP():  
     
    def F(U,t): 
@@ -132,5 +147,8 @@ def Initial_positions_and_velocities( Nc, Nb ):
 
     return U0 
 
+
 if __name__ == '__main__': 
      Integrate_NBP()  
+
+
