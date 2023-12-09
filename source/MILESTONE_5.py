@@ -19,10 +19,6 @@ def Cauchy_problem_NBODY(F, t, Uo, temporal_scheme): # rows/columns inverted ver
     for i in range(N):
         U[i + 1,:] = temporal_scheme(U[i, :], t[i], t[i+1]-t[i], F)
 
-    x = U[0, :]  # Collect x values or values of the 1st row
-    y = U[1, :]  # Collect y values or values of the 2nd row
-    z = U[2, :]  # Collect y values or values of the 3rd row
-
     return U
 
 
