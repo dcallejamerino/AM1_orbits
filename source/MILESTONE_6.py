@@ -111,7 +111,7 @@ ax2.plot(U[:,0], U[:,1],'-',color = "r")
 ax2.plot(LagPoints[sel_LG-1,0], LagPoints[sel_LG-1,1] , 'o', color = "k")
 ax1.set_title("Orbital view")
 ax2.set_title("Close-up")
-fig.suptitle("Orbit around L2 with CN")
+fig.suptitle("Orbit around L5 with CN")
 for ax in fig.get_axes():
     ax.set(xlabel='x', ylabel='y')
     ax.grid()
