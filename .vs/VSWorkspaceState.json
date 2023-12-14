@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\source"
+    "\\source",
+    "\\source\\0_Tests"
   ],
-  "SelectedNode": "\\source\\MILESTONE_6.py",
+  "SelectedNode": "\\source\\0_Tests\\TEST NBODY JUAN.py",
   "PreviewInSolutionExplorer": false
 }
