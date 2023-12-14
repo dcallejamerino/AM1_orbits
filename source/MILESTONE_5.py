@@ -1,11 +1,12 @@
 from numpy import array, linspace, reshape, zeros, sqrt, arange, float64
-
-import Temporal_Schemes, Nbody_function
-
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.animation as animation
 from mpl_toolkits.mplot3d import Axes3D
+
+from ODEs.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler, LF
+from ODEs.RK_Embedded import RKEmb
+from Physic.Nbody_function import N_Body
 
 ### CAUCHY ###
 # Cauchy for N-body problem (we have more inputs than U and t)
@@ -67,10 +68,10 @@ t = linspace(0, tf, N+1)    # Time(0:N)
 Uo = Init( Nc, Nb )
 
 def F(U, t):
-   return Nbody_function.N_Body(U, t, Nb, Nc)
+   return N_Body(U, t, Nb, Nc)
 
 
-temporal_scheme = Temporal_Schemes.RK4
+temporal_scheme = RK4
 U  = Cauchy_problem_NBODY(F, t, Uo, temporal_scheme)
 
 

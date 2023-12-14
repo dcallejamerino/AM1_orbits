@@ -3,7 +3,11 @@
 from numpy import array, zeros, float64, arange,linspace
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
-import Temporal_Schemes, Physics, Cauchy_problem, Richardson
+
+from ODEs.Cauchy_problem import Cauchy_problem
+from ODEs.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler, LF
+from Physic.Physics import Kepler, Oscillator, Clase, Brusellator, Duffing0, Duffing1, Duffing2, VanderPol, Rayleigh, Lorentz,Rossler
+from Errors.Richardson import Richardson_error, Convergency
 
 # 1. Write a function to evaluate errors by means of Richardson: Refer to Richardson.py
 
@@ -22,47 +26,47 @@ import Temporal_Schemes, Physics, Cauchy_problem, Richardson
 # ------------------------------------------------------------------------------- #
 
 # Euler
-F = Physics.Kepler
+F = Kepler
 dt = 0.01
 t = arange(0, 200, dt)  
 Uo = array( [1,0,0,1] ) 
-temporal_scheme = Temporal_Schemes.Euler
+temporal_scheme = Euler
 
-E_EULER = Richardson.Richardson_error(F, t, Uo, temporal_scheme)
+E_EULER = Richardson_error(F, t, Uo, temporal_scheme)
 plt.axis('equal')
 plt.plot(t, E_EULER[0,:],label='EULER')
 
 
 # CN
-F = Physics.Kepler
+F = Kepler
 dt = 0.01
 t = arange(0, 200, dt)  
 Uo = array( [1,0,0,1] ) 
-temporal_scheme = Temporal_Schemes.CN
+temporal_scheme = CN
 
-E_CN = Richardson.Richardson_error(F, t, Uo, temporal_scheme)
+E_CN = Richardson_error(F, t, Uo, temporal_scheme)
 plt.plot(t, E_CN[0,:],label='CN')
 
 
 # RK4
-F = Physics.Kepler
+F = Kepler
 dt = 0.01
 t = arange(0, 200, dt)  
 Uo = array( [1,0,0,1] ) 
-temporal_scheme = Temporal_Schemes.RK4
+temporal_scheme = RK4
 
-E_RK4 = Richardson.Richardson_error(F, t, Uo, temporal_scheme)
+E_RK4 = Richardson_error(F, t, Uo, temporal_scheme)
 plt.plot(t, E_RK4[0,:],label='RK4')
 
 
 # Inverse Euler - It does not converge, so it is only evaluated in a shorter time domain
-F = Physics.Kepler
+F = Kepler
 dt = 0.1
 t = arange(0, 2, dt)   
 Uo = array( [1,0,0,1] ) 
-temporal_scheme = Temporal_Schemes.Inverse_Euler
+temporal_scheme = Inverse_Euler
 
-E_IE = Richardson.Richardson_error(F, t, Uo, temporal_scheme)
+E_IE = Richardson_error(F, t, Uo, temporal_scheme)
 plt.plot(t, E_IE[0,:],label='Inverse_Euler')
 
 #Graph
@@ -93,14 +97,14 @@ plt.show()
 # ------------------------------------------------------------------------------- #
 
 # Euler
-F = Physics.Kepler
+F = Kepler
 N = 2000
 t = linspace(0, 10, N) 
 Uo = array( [1,0,0,1] )
-temporal_scheme = Temporal_Schemes.Euler
+temporal_scheme = Euler
 p=5
 #Graph
-[log_E_EULER, log_N_EULER] = Richardson.Convergency(F, t, Uo, temporal_scheme,p)
+[log_E_EULER, log_N_EULER] = Convergency(F, t, Uo, temporal_scheme,p)
 print("EULER:",log_N_EULER, log_E_EULER)
 plt.plot(log_N_EULER, log_E_EULER,label='EULER')
 plt.xlabel('log_N')
@@ -113,14 +117,14 @@ plt.show()
 
 
 # CN
-F = Physics.Kepler
+F = Kepler
 N = 2000
 t = linspace(0, 10, N) 
 Uo = array( [1,0,0,1] )
-temporal_scheme = Temporal_Schemes.CN
+temporal_scheme = CN
 p=5
 #Graph
-[log_E_CN, log_N_CN] = Richardson.Convergency(F, t, Uo, temporal_scheme,p)
+[log_E_CN, log_N_CN] = Convergency(F, t, Uo, temporal_scheme,p)
 print("CN:",log_N_CN, log_E_CN)
 plt.plot(log_N_CN, log_E_CN,label='CN')
 plt.xlabel('log_N')
@@ -133,14 +137,14 @@ plt.show()
 
 
 # RK4
-F = Physics.Kepler
+F = Kepler
 N = 2000
 t = linspace(0, 10, N) 
 Uo = array( [1,0,0,1] )
-temporal_scheme = Temporal_Schemes.RK4
+temporal_scheme = RK4
 p=5
 #Graph
-[log_E_RK4, log_N_RK4] = Richardson.Convergency(F, t, Uo, temporal_scheme,p)
+[log_E_RK4, log_N_RK4] = Convergency(F, t, Uo, temporal_scheme,p)
 print("RK4:",log_N_RK4, log_E_RK4)
 plt.plot(log_N_RK4, log_E_RK4,label='RK4')
 plt.xlabel('log_N')

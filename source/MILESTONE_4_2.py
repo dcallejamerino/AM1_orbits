@@ -3,7 +3,11 @@
 from numpy import array, zeros, float64, arange, transpose, linspace, linalg, real, imag
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
-import Temporal_Schemes, Physics, Cauchy_problem, Stability_Regions
+
+from ODEs.Cauchy_problem import Cauchy_problem
+from ODEs.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler, LF
+from Physic.Physics import Kepler, Oscillator, Clase, Brusellator, Duffing0, Duffing1, Duffing2, VanderPol, Rayleigh, Lorentz,Rossler
+from Stability.Stability_Regions import Stability_region
 
 # 3. Explain the numerical results based on regions of absolute stability (based on the plots of point 2)
 
@@ -37,7 +41,7 @@ dt3 = 0.01
 # ------------------------------------------------------------------------------- #
 
 # Euler
-(x1, y1, rho1) = Stability_Regions.Stability_region(Temporal_Schemes.Euler,100,-2.5,0.5,-1.5,1.5 )
+(x1, y1, rho1) = Stability_region(Euler,100,-2.5,0.5,-1.5,1.5 )
 plt.contour( x1, y1, transpose(rho1), linspace(0, 1, 11))
 plt.scatter(real(Eigenvalues*dt1), imag(Eigenvalues*dt1), color='red',label='dt=1')
 plt.scatter(real(Eigenvalues*dt2), imag(Eigenvalues*dt2), color='orange',label='dt=0.1')
@@ -52,7 +56,7 @@ plt.grid()
 plt.show()
 
 # Inverse_Euler
-(x2, y2, rho2) = Stability_Regions.Stability_region(Temporal_Schemes.Inverse_Euler,100,10,-10,10,-10)
+(x2, y2, rho2) = Stability_region(Inverse_Euler,100,10,-10,10,-10)
 plt.contour( x2, y2, transpose(rho2), linspace(0, 1, 11))
 plt.scatter(real(Eigenvalues*dt1), imag(Eigenvalues*dt1), color='red',label='dt=1')
 plt.scatter(real(Eigenvalues*dt2), imag(Eigenvalues*dt2), color='orange',label='dt=0.1')
@@ -67,7 +71,7 @@ plt.grid()
 plt.show()
 
 # CN
-(x3, y3, rho3) = Stability_Regions.Stability_region(Temporal_Schemes.CN,100,2,-5,8,-8)
+(x3, y3, rho3) = Stability_region(CN,100,2,-5,8,-8)
 plt.contour( x3, y3, transpose(rho3), linspace(0, 1, 11))
 plt.scatter(real(Eigenvalues*dt1), imag(Eigenvalues*dt1), color='red',label='dt=1')
 plt.scatter(real(Eigenvalues*dt2), imag(Eigenvalues*dt2), color='orange',label='dt=0.1')
@@ -82,7 +86,7 @@ plt.grid()
 plt.show()
 
 # RK4
-(x4, y4, rho4) = Stability_Regions.Stability_region(Temporal_Schemes.RK4,100,2,-4,4,-4)
+(x4, y4, rho4) = Stability_region(RK4,100,2,-4,4,-4)
 plt.contour( x4, y4, transpose(rho4), linspace(0, 1, 11))
 plt.scatter(real(Eigenvalues*dt1), imag(Eigenvalues*dt1), color='red',label='dt=1')
 plt.scatter(real(Eigenvalues*dt2), imag(Eigenvalues*dt2), color='orange',label='dt=0.1')

@@ -3,7 +3,9 @@
 from numpy import array, zeros
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
-import Temporal_Schemes, Physics
+from ODEs.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler, LF
+from Physic.Physics import Kepler, Oscillator, Clase, Brusellator, Duffing0, Duffing1, Duffing2, VanderPol, Rayleigh, Lorentz,Rossler
+
 
 # 1. Write a function called Euler to integrate one step: Refer to Temporal_Schemes
 
@@ -36,7 +38,7 @@ t[0] = 0
 
 for i in range(1, N): 
       t[i] = dt*i
-      U = Temporal_Schemes.Euler (U, t, dt, Physics.Kepler)
+      U = Euler (U, t, dt, Kepler)
       x[i] = U[0] 
       y[i] = U[1]
       
@@ -64,7 +66,7 @@ t[0] = 0
 
 for i in range(1, N): 
       t[i] = dt*i
-      U = Temporal_Schemes.CN (U, t, dt, Physics.Kepler)
+      U = CN (U, t, dt, Kepler)
       x[i] = U[0] 
       y[i] = U[1]
       
@@ -92,7 +94,7 @@ t[0] = 0
 
 for i in range(1, N): 
       t[i] = dt*i
-      U = Temporal_Schemes.RK4 (U, t, dt, Physics.Kepler)
+      U = RK4 (U, t, dt, Kepler)
       x[i] = U[0] 
       y[i] = U[1]
       
@@ -120,7 +122,7 @@ t[0] = 0
 
 for i in range(1, N): 
       t[i] = dt*i
-      U = Temporal_Schemes.Inverse_Euler (U, t, dt, Physics.Kepler)
+      U = Inverse_Euler (U, t, dt, Kepler)
       x[i] = U[0] 
       y[i] = U[1]
       

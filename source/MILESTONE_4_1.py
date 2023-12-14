@@ -3,7 +3,11 @@
 from numpy import array, zeros, float64, arange, transpose, linspace
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
-import Temporal_Schemes, Physics, Cauchy_problem, Stability_Regions
+
+from ODEs.Cauchy_problem import Cauchy_problem
+from ODEs.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler, LF
+from Physic.Physics import Kepler, Oscillator, Clase, Brusellator, Duffing0, Duffing1, Duffing2, VanderPol, Rayleigh, Lorentz,Rossler
+from Stability.Stability_Regions import Stability_region
 
 # 1. Integrate the linear oscillator with some initial conditions
 
@@ -18,49 +22,49 @@ import Temporal_Schemes, Physics, Cauchy_problem, Stability_Regions
 
 # Introduce inputs para EULER: 
 
-F = Physics.Oscillator
+F = Oscillator
 dt = 0.01
 t = arange(0, 200, dt)  
 Uo = array([1, 0])
-temporal_scheme = Temporal_Schemes.Euler
-U, x1, y1 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = Euler
+U, x1, y1 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Introduce inputs para INVERSE EULER: 
 
-F = Physics.Oscillator
+F = Oscillator
 dt = 0.01
 t = arange(0, 200, dt)  
 Uo = array([1, 0])
-temporal_scheme = Temporal_Schemes.Inverse_Euler
-U, x2, y2 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = Inverse_Euler
+U, x2, y2 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Introduce inputs para CN: 
 
-F = Physics.Oscillator
+F = Oscillator
 dt = 0.01
 t = arange(0, 200, dt)  
 Uo = array([1, 0])
-temporal_scheme = Temporal_Schemes.CN
-U, x3, y3 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = CN
+U, x3, y3 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Introduce inputs para RK4: 
 
-F = Physics.Oscillator
+F = Oscillator
 dt = 0.01
 t = arange(0, 200, dt)    
 Uo = array([1, 0])
-temporal_scheme = Temporal_Schemes.RK4
-U, x4, y4 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x4, y4 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # # Introduce inputs para LF: 
 
-# F = Physics.Oscillator
+# F = Oscillator
 # dt = 0.01
 # t = arange(0, 200, dt)  
 # Uo = array([1, 0])
 # U1 = Uo + dt * F(Uo,t)
-# temporal_scheme = Temporal_Schemes.LF
-# U, x5, y5 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+# temporal_scheme = LF
+# U, x5, y5 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Plot 1
 plt.plot(x1,y1,label='Euler')

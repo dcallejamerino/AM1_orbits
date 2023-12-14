@@ -2,7 +2,11 @@ from numpy import array, linspace, zeros, around, float64, real, imag, transpose
 import matplotlib.pyplot as plt
 from random import random
 
-import Temporal_Schemes, RK_Embedded, Resolution_3Body, Stability_Regions
+from ODEs.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler, LF
+from ODEs.RK_Embedded import RKEmb
+from Physic.Nbody_function import N_Body
+from Physic.Resolution_3Body import CR3BP, Lpoints, Stability
+from Stability.Stability_Regions import Stability_region
 
 ### CAUCHY ###
 # Cauchy for Lagrange problem 
@@ -29,12 +33,12 @@ mu = 1.2151e-2 #Earth-Moon
 
 # Cauchy function that I call since it has more inputs than (U,t)
 def F(U,t):
-   return Resolution_3Body.CR3BP(U, mu)
+   return CR3BP(U, mu)
 
 
 # Lagrage points starting from close points
 U0LP = array([[0.1, 0, 0, 0],[1.01, 0, 0, 0],[-0.1, 0, 0, 0],[0.8, 0.6, 0, 0],[0.8, -0.6, 0, 0]])
-LagPoints = Resolution_3Body.Lpoints(U0LP, 5, mu)
+LagPoints = Lpoints(U0LP, 5, mu)
 
 # Print the calculated Lagrange points with labels
 for i, lag_point in enumerate(LagPoints):
@@ -52,7 +56,7 @@ U0 = U0 + ran
 
 
 #Integration of the circular restricted problem of the 3 Bodies thru a temporal scheme
-temporal_scheme = Temporal_Schemes.CN
+temporal_scheme = CN
 U  = Cauchy_problem_Lagrange(F, t, U0, temporal_scheme)
 
 
@@ -60,7 +64,7 @@ U  = Cauchy_problem_Lagrange(F, t, U0, temporal_scheme)
 for i in range(5):
     U0S = zeros(4)
     U0S[0:2] = LagPoints[i,:]
-    eingvalues = Resolution_3Body.Stability(U0S, mu)
+    eingvalues = Stability(U0S, mu)
     # Print Lagrange point index and corresponding stability evaluation
     print(f"LP {i+1} eingvalue: {around(eingvalues.real, 4)}")
     
@@ -71,18 +75,18 @@ for i in range(5):
 
 U0S = zeros(4)
 U0S[0:2] = LagPoints[0,:]
-eingvalues1 = Resolution_3Body.Stability(U0S, mu)
+eingvalues1 = Stability(U0S, mu)
 U0S[0:2] = LagPoints[1,:]
-eingvalues2 = Resolution_3Body.Stability(U0S, mu)
+eingvalues2 = Stability(U0S, mu)
 U0S[0:2] = LagPoints[2,:]
-eingvalues3 = Resolution_3Body.Stability(U0S, mu)
+eingvalues3 = Stability(U0S, mu)
 U0S[0:2] = LagPoints[3,:]
-eingvalues4 = Resolution_3Body.Stability(U0S, mu)
+eingvalues4 = Stability(U0S, mu)
 U0S[0:2] = LagPoints[4,:]
-eingvalues5 = Resolution_3Body.Stability(U0S, mu)
+eingvalues5 = Stability(U0S, mu)
  
 # CN
-(x1, y1, rho1) = Stability_Regions.Stability_region(Temporal_Schemes.CN,100,0.0005,-0.0005,0.0005,-0.0005)
+(x1, y1, rho1) = Stability_region(CN,100,0.0005,-0.0005,0.0005,-0.0005)
 plt.contour( x1, y1, transpose(rho1), linspace(0, 1, 11))
 plt.scatter(real(eingvalues1*1/N), imag(eingvalues1*1/N), color='red',label='LP1: dt=1/N')
 plt.scatter(real(eingvalues2*1/N), imag(eingvalues2*1/N), color='blue',label='LP2: dt=1/N')

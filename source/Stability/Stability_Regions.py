@@ -1,7 +1,6 @@
 from numpy import array, abs, linspace, zeros,float64, max, transpose  
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
-import Temporal_Schemes, Physics
 
 
 ### Stability Regions ###

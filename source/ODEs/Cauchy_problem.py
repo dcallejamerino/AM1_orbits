@@ -3,7 +3,7 @@
 from numpy import array, zeros, float64, arange
 from scipy.optimize import newton
 import matplotlib.pyplot as plt
-import Temporal_Schemes, Physics
+
 
 ### CAUCHY ###
 # ------------------------------------------------------------------------------- #

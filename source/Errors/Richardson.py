@@ -1,6 +1,6 @@
 from numpy import linspace, size, zeros, log10, float64, ones, vstack, array
 from numpy.linalg import norm, lstsq
-import Temporal_Schemes
+from ODEs.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler
 
 # CAUCHI for Richardson error without "x" and "y" as output ("x" and "y" needed for math theory plotting)
 # ------------------------------------------------------------------------------- #
@@ -65,9 +65,9 @@ def Richardson_error(F, t, Uo, temporal_scheme):
     U2 = Cauchy_problem_rich(F, t2, Uo, temporal_scheme)
     
     # Definition of the temporal scheme order
-    if temporal_scheme == Temporal_Schemes.RK4:
+    if temporal_scheme == RK4:
         q = 4
-    elif temporal_scheme == Temporal_Schemes.CN:
+    elif temporal_scheme == CN:
         q = 2
     else:
         q = 1
@@ -103,9 +103,9 @@ def Convergency(F, t, Uo, temporal_scheme, p):
     U1 = Cauchy_problem_rich(F, t1, Uo, temporal_scheme)
     
     # Definition of the temporal scheme order
-    if temporal_scheme == Temporal_Schemes.RK4:
+    if temporal_scheme == RK4:
         q = 4
-    elif temporal_scheme == Temporal_Schemes.CN:
+    elif temporal_scheme == CN:
         q = 2
     else:
         q = 1

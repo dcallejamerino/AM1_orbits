@@ -57,7 +57,7 @@ def Inverse_Euler (U, t, dt, F):
 
     return newton( Residual_Eu, U )
 
-# def LF(U2, U1, t, dt, F):
+def LF(U2, U1, t, dt, F):
 
-#     return U1 + 2*dt*F(U2,t)
+    return U1 + 2*dt*F(U2,t)
 
