@@ -6,7 +6,10 @@ from scipy.optimize import newton
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
-import Temporal_Schemes, Physics, Cauchy_problem
+
+from ODEs.Cauchy_problem import Cauchy_problem, Cauchy_problem_3D
+from ODEs.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler, LF
+from Physic.Physics import Kepler, Oscillator, Clase, Brusellator, Duffing0, Duffing1, Duffing2, VanderPol, Rayleigh, Lorentz,Rossler
 
 
 # 1. PUNTO DE SILLA
@@ -21,68 +24,68 @@ import Temporal_Schemes, Physics, Cauchy_problem
 # ------------------------------------------------------------------------------- #
 
 # Introduce inputs: MANUALLY - BISECTRIZ
-F = Physics.Clase
+F = Clase
 dt = 0.08
 t = arange(0, 1.6, dt)
 Uo = array([2/1.9, 1/1.9])
-temporal_scheme = Temporal_Schemes.RK4
-U, x1, y1 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x1, y1 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Introduce inputs: MANUALLY - BISECTRIZ
-F = Physics.Clase
+F = Clase
 dt = 0.08
 t = arange(0, 1.6, dt)
 Uo = array([-2/1.9, -1/1.9])
-temporal_scheme = Temporal_Schemes.RK4
-U, x3, y3 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x3, y3 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Introduce inputs: MANUALLY - BISECTRIZ
-F = Physics.Clase
+F = Clase
 dt = 0.1
 t = arange(0, 5, dt)
 Uo = array([8, 16])
-temporal_scheme = Temporal_Schemes.RK4
-U, x2, y2 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x2, y2 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Introduce inputs: MANUALLY - BISECTRIZ
-F = Physics.Clase
+F = Clase
 dt = 0.1
 t = arange(0, 5, dt)
 Uo = array([-8, -16])
-temporal_scheme = Temporal_Schemes.RK4
-U, x4, y4 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x4, y4 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Introduce inputs: MANUALLY 
-F = Physics.Clase
+F = Clase
 dt = 0.1
 t = arange(0, 1.3, dt)
 Uo = array([-6, -16])
-temporal_scheme = Temporal_Schemes.RK4
-U, x9, y9 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x9, y9 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Introduce inputs: MANUALLY 
-F = Physics.Clase
+F = Clase
 dt = 0.1
 t = arange(0, 1.3, dt)
 Uo = array([6, 16])
-temporal_scheme = Temporal_Schemes.RK4
-U, x10, y10 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x10, y10 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Introduce inputs: MANUALLY 
-F = Physics.Clase
+F = Clase
 dt = 0.1
 t = arange(0, 1.9, dt)
 Uo = array([9, 17])
-temporal_scheme = Temporal_Schemes.RK4
-U, x11, y11 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x11, y11 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Introduce inputs: MANUALLY 
-F = Physics.Clase
+F = Clase
 dt = 0.1
 t = arange(0, 1.9, dt)
 Uo = array([-9, -17])
-temporal_scheme = Temporal_Schemes.RK4
-U, x12, y12 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x12, y12 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Plot
 plt.plot(x1,y1)

@@ -6,7 +6,10 @@ from scipy.optimize import newton
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
-import Temporal_Schemes, Physics, Cauchy_problem
+
+from ODEs.Cauchy_problem import Cauchy_problem, Cauchy_problem_3D
+from ODEs.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler, LF
+from Physic.Physics import Kepler, Oscillator, Clase, Brusellator, Duffing0, Duffing1, Duffing2, VanderPol, Rayleigh, Lorentz,Rossler
 
 # 6. VAN DER POL - CICLO LIMITE
 # ------------------------------------------------------------------------------- #
@@ -20,12 +23,12 @@ import Temporal_Schemes, Physics, Cauchy_problem
 
 # Introduce inputs: 
 
-F = Physics.VanderPol
+F = VanderPol
 dt = 0.01
 t = arange(0, 400, dt)  
 Uo = array([1.7, 1.1])
-temporal_scheme = Temporal_Schemes.RK4
-U, x1, y1 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x1, y1 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Plot x e y
 plt.plot(x1,y1)

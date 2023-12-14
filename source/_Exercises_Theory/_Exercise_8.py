@@ -6,10 +6,12 @@ from scipy.optimize import newton
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
-import Temporal_Schemes, Physics, Cauchy_problem
 
+from ODEs.Cauchy_problem import Cauchy_problem, Cauchy_problem_3D
+from ODEs.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler, LF
+from Physic.Physics import Kepler, Oscillator, Clase, Brusellator, Duffing0, Duffing1, Duffing2, VanderPol, Rayleigh, Lorentz,Rossler
 
-# 9. ROSSLER
+# 8. LORENTZ 
 # ------------------------------------------------------------------------------- #
 #INPUTS CAUCHY:
     # F(U,t) : Function dU/dt = F(U,t) -> from Physics.py
@@ -21,27 +23,27 @@ import Temporal_Schemes, Physics, Cauchy_problem
 
 # Introduce inputs para primera condicion inicial: 
 
-F = Physics.Rossler
+F = Lorentz
 dt = 0.01
-t = arange(0, 200, dt)  
-Uo = array([-1, 1, 1])
-temporal_scheme = Temporal_Schemes.RK4
-U, x1, y1, z1 = Cauchy_problem.Cauchy_problem_3D(F, t, Uo, temporal_scheme)
+t = arange(0, 50, dt)  
+Uo = array([3, 3, 3])
+temporal_scheme = RK4
+U, x1, y1, z1 = Cauchy_problem_3D(F, t, Uo, temporal_scheme)
 
 # Introduce inputs para segunda condicion inicial: 
 
-F = Physics.Rossler
+F = Lorentz
 dt = 0.01
-t = arange(0, 200, dt)  
-Uo = array([0, 0, 0])
-temporal_scheme = Temporal_Schemes.RK4
-U, x2, y2, z2 = Cauchy_problem.Cauchy_problem_3D(F, t, Uo, temporal_scheme)
+t = arange(0, 50, dt)  
+Uo = array([6, 6, 6])
+temporal_scheme = RK4
+U, x2, y2, z2 = Cauchy_problem_3D(F, t, Uo, temporal_scheme)
 
 # Plot 3D
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.plot(x1, y1, z1, label='Uo = ([-1, 1, 1])')
-ax.plot(x2, y2, z2, label='Uo = ([0, 0, 0])')
+ax.plot(x1, y1, z1, label='Uo = ([3, 3, 3])')
+ax.plot(x2, y2, z2, label='Uo = ([6, 6, 6])')
 # Establecer etiquetas para los ejes
 ax.set_xlabel('X Label')
 ax.set_ylabel('Y Label')

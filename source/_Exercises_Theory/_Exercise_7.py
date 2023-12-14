@@ -6,7 +6,10 @@ from scipy.optimize import newton
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
-import Temporal_Schemes, Physics, Cauchy_problem
+
+from ODEs.Cauchy_problem import Cauchy_problem, Cauchy_problem_3D
+from ODEs.Temporal_Schemes import Euler, CN, RK4, Inverse_Euler, LF
+from Physic.Physics import Kepler, Oscillator, Clase, Brusellator, Duffing0, Duffing1, Duffing2, VanderPol, Rayleigh, Lorentz,Rossler
 
 # 7. RAYLEIGH - CICLO LIMITE
 # ------------------------------------------------------------------------------- #
@@ -19,20 +22,20 @@ import Temporal_Schemes, Physics, Cauchy_problem
 # ------------------------------------------------------------------------------- #
 
 # Introduce inputs primera CI: 
-F = Physics.Rayleigh
+F = Rayleigh
 dt = 0.01
 t = arange(0, 300, dt)  
 Uo = array([0, 0])
-temporal_scheme = Temporal_Schemes.RK4
-U, x1, y1 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x1, y1 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Introduce inputs segunda CI: 
-F = Physics.Rayleigh
+F = Rayleigh
 dt = 0.01
 t = arange(0, 300, dt)  
 Uo = array([1, 0])
-temporal_scheme = Temporal_Schemes.RK4
-U, x2, y2 = Cauchy_problem.Cauchy_problem(F, t, Uo, temporal_scheme)
+temporal_scheme = RK4
+U, x2, y2 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
 # Plot
 #plt.plot(t,x2)
