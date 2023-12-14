@@ -99,3 +99,4 @@ plt.axvline(0, color='black', linestyle='--', linewidth=2)
 plt.title('Regions of absolute stability RK4')
 plt.grid()
 plt.show()
+

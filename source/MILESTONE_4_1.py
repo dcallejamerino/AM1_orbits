@@ -56,21 +56,40 @@ Uo = array([1, 0])
 temporal_scheme = RK4
 U, x4, y4 = Cauchy_problem(F, t, Uo, temporal_scheme)
 
+
 # # Introduce inputs para LF: 
 
-# F = Oscillator
-# dt = 0.01
-# t = arange(0, 200, dt)  
-# Uo = array([1, 0])
-# U1 = Uo + dt * F(Uo,t)
-# temporal_scheme = LF
-# U, x5, y5 = Cauchy_problem(F, t, Uo, temporal_scheme)
+def Cauchy_problem_LP(F, t, Uo, temporal_scheme):
+    Nv = len(Uo)  # number of rows needed
+    N = len(t) - 1  # number of columns needed
+    U = zeros((Nv, N + 1), dtype=float64)
+    U[:, 0] = Uo
+    U[:,1] = U[:,0] + dt*F(U[:,0], t[0])
+
+    for i in range(1,N):
+        U[:, i + 1] = temporal_scheme(U[:, i], U[:, i-1], t[i], t[i+1]-t[i], F)
+        
+    x = U[0, :]  # Collect x values or values of the 1st row
+    y = U[1, :]  # Collect y values or values of the 2nd row
+
+    return U, x, y
+
+F = Oscillator
+dt = 0.01
+t = arange(0, 200, dt)  
+Uo = array([1, 0])
+U1 = Uo + dt * F(Uo,t)
+temporal_scheme = LF
+U, x5, y5 = Cauchy_problem_LP(F, t, Uo, temporal_scheme)
+
+
 
 # Plot 1
 plt.plot(x1,y1,label='Euler')
 plt.plot(x2,y2,label='Inverse_Euler')
 plt.plot(x3,y3,label='CN')
 plt.plot(x4,y4,label='RK4')
+plt.plot(x5,y5,label='LF')
 
 
 plt.xlabel('x')
@@ -86,6 +105,7 @@ plt.plot(t,x1,label='Euler')
 plt.plot(t,x2,label='Inverse_Euler')
 plt.plot(t,x3,label='CN')
 plt.plot(t,x4,label='RK4')
+plt.plot(t,x5,label='LF')
 
 plt.xlabel('t')
 plt.ylabel('x') 
