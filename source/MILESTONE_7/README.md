@@ -22,5 +22,5 @@ El trabajo se encuentra desglosado de la siguiente manera:
 5) *Temporal_Schemes.py*: Incluye los esquemas temporales empleados en el trabajo: Euler, Euler Implícito, Runge Kutta y Cranck Nicolson.
 6) *Figures*:  Almacena las imagenes de descripción.
 
-![](Modules_7.png)
+![](/Modules_7.png)
 
