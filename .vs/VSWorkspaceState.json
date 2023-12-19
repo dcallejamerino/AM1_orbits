@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\source\\Stability"
+    "\\source",
+    "\\source\\Physic"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\source\\Physic\\Physics.py",
   "PreviewInSolutionExplorer": false
 }
