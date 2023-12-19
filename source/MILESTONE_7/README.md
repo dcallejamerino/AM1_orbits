@@ -23,3 +23,4 @@ El trabajo se encuentra desglosado de la siguiente manera:
 6) *Figures*:  Almacena las imagenes de descripción.
 
 ![](MILESTONE_7/Figures/Diagrama.png)
+![](/Modules_hitos.png)
